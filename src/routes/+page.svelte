@@ -8,6 +8,7 @@
 		{ owner: 'tailwindlabs', name: 'tailwindcss' },
 		{ owner: 'directus', name: 'directus' },
 		{ owner: 'sanity-io', name: 'sanity' },
+		{ owner: 'meilisearch', name: 'meilisearch' },
 		{ owner: 'payloadcms', name: 'payload' },
 		{ owner: 'strapi', name: 'strapi' },
 		{ owner: 'TryGhost', name: 'Ghost' },
