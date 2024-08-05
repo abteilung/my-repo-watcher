@@ -11,7 +11,8 @@
 		{ owner: 'payloadcms', name: 'payload' },
 		{ owner: 'strapi', name: 'strapi' },
 		{ owner: 'TryGhost', name: 'Ghost' },
-		{ owner: 'WordPress', name: 'WordPress' }
+		{ owner: 'WordPress', name: 'WordPress' },
+		{ owner: 'Lissy93', name: 'dashy' }
 	];
 	let releases = {};
 
