@@ -6,6 +6,7 @@
 		{ owner: 'sveltejs', name: 'svelte' },
 		{ owner: 'sveltejs', name: 'kit' },
 		{ owner: 'tailwindlabs', name: 'tailwindcss' },
+		{ owner: 'coollabsio', name: 'coolify' },
 		{ owner: 'directus', name: 'directus' },
 		{ owner: 'sanity-io', name: 'sanity' },
 		{ owner: 'meilisearch', name: 'meilisearch' },
@@ -25,10 +26,12 @@
 	});
 </script>
 
-<div class="container mx-auto px-4">
+<div class=" mx-auto px-4">
 	<h1 class="mb-8 text-3xl font-bold">GitHub Release Watcher</h1>
 
-	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+	<div
+		class="grid grid-cols-1 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+	>
 		{#each repos as repo}
 			<RepoCard {repo} releases={releases[`${repo.owner}/${repo.name}`] || []} />
 		{/each}
