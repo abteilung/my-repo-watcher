@@ -2,14 +2,16 @@
 	export let repo;
 	export let releases = [];
 
-	function isLessThanWeekOld(dateString) {
-		if (!dateString) return false;
+	function getUpdateStatus(dateString) {
+		if (!dateString) return 'none';
 		const releaseDate = new Date(dateString);
 		const now = new Date();
+		const diffInDays = (now - releaseDate) / (1000 * 60 * 60 * 24);
 
-		// one week means the repos are recently updated
-		const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-		return releaseDate > weekAgo;
+		if (diffInDays <= 1) return 'very-recent';
+		if (diffInDays <= 7) return 'recent';
+		if (diffInDays <= 14) return 'somewhat-recent';
+		return 'old';
 	}
 
 	$: isRelease = releases.length > 0 && 'published_at' in releases[0];
@@ -30,10 +32,10 @@
 	{#if releases.length > 0}
 		<ul class="space-y-2">
 			{#each releases as item}
+				{@const updateStatus = getUpdateStatus(item.published_at)}
 				<li
-					class="flex items-center rounded bg-gray-100 p-2 {isRelease &&
-					isLessThanWeekOld(item.published_at)
-						? 'border-r-4 border-green-300'
+					class="flex items-center rounded bg-gray-100 p-2 {isRelease
+						? `update-${updateStatus}`
 						: ''}"
 				>
 					<div class="flex-grow">
@@ -44,8 +46,16 @@
 							>
 						{/if}
 					</div>
-					{#if isRelease && isLessThanWeekOld(item.published_at)}
-						<span class="ml-2 text-sm font-medium text-green-500">New</span>
+					{#if isRelease && updateStatus !== 'old'}
+						<span class="ml-2 text-sm font-medium">
+							{#if updateStatus === 'very-recent'}
+								Very Recent
+							{:else if updateStatus === 'recent'}
+								Recent
+							{:else}
+								Somewhat Recent
+							{/if}
+						</span>
 					{/if}
 				</li>
 			{/each}
@@ -54,3 +64,18 @@
 		<p class="text-gray-600">No releases or tags found.</p>
 	{/if}
 </div>
+
+<style>
+	.update-very-recent {
+		@apply border-r-4 border-green-500 bg-green-100;
+	}
+	.update-recent {
+		@apply border-r-4 border-green-300;
+	}
+	.update-somewhat-recent {
+		@apply border-r-4 border-orange-300;
+	}
+	.update-old {
+		@apply border-r-4 border-gray-300;
+	}
+</style>
