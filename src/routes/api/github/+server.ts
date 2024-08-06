@@ -5,7 +5,8 @@ async function fetchGithubData(url: string) {
 	const response = await fetch(url, {
 		headers: {
 			Authorization: `token ${GITHUB_TOKEN}`,
-			'User-Agent': 'My-Github-Watcher'
+			'Access-Control-Allow-Origin': '*',
+			'Cache-Control': `public, s-maxage=${60 * 60 * 24 * 365}`
 		}
 	});
 	if (!response.ok) {
