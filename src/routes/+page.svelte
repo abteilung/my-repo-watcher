@@ -3,18 +3,26 @@
 	import RepoCard from '$lib/components/RepoCard.svelte';
 
 	let repos = [
-		{ owner: 'sveltejs', name: 'svelte' },
-		{ owner: 'sveltejs', name: 'kit' },
-		{ owner: 'tailwindlabs', name: 'tailwindcss' },
 		{ owner: 'coollabsio', name: 'coolify' },
+		{ owner: 'dani-garcia', name: 'vaultwarden' },
 		{ owner: 'directus', name: 'directus' },
-		{ owner: 'sanity-io', name: 'sanity' },
+		{ owner: 'duplicati', name: 'duplicati' },
+		{ owner: 'elastic', name: 'elasticsearch' },
+		{ owner: 'Lissy93', name: 'dashy' },
+		{ owner: 'louislam', name: 'uptime-kuma' },
+		{ owner: 'makeplane', name: 'plane' },
 		{ owner: 'meilisearch', name: 'meilisearch' },
+		{ owner: 'nicolargo', name: 'glances' },
 		{ owner: 'payloadcms', name: 'payload' },
+		{ owner: 'pocketbase', name: 'pocketbase' },
+		{ owner: 'sanity-io', name: 'sanity' },
 		{ owner: 'strapi', name: 'strapi' },
+		{ owner: 'sveltejs', name: 'kit' },
+		{ owner: 'sveltejs', name: 'svelte' },
+		{ owner: 'tailwindlabs', name: 'tailwindcss' },
 		{ owner: 'TryGhost', name: 'Ghost' },
-		{ owner: 'WordPress', name: 'WordPress' },
-		{ owner: 'Lissy93', name: 'dashy' }
+		{ owner: 'twentyhq', name: 'twenty' },
+		{ owner: 'WordPress', name: 'WordPress' }
 	];
 	let releases = {};
 
