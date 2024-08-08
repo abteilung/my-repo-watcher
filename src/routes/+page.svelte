@@ -13,6 +13,7 @@
 		{ owner: 'makeplane', name: 'plane' },
 		{ owner: 'meilisearch', name: 'meilisearch' },
 		{ owner: 'nicolargo', name: 'glances' },
+		{ owner: 'paul-gauthier', name: 'aider' },
 		{ owner: 'payloadcms', name: 'payload' },
 		{ owner: 'pocketbase', name: 'pocketbase' },
 		{ owner: 'sanity-io', name: 'sanity' },
