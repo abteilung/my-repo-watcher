@@ -39,7 +39,17 @@
 						: ''}"
 				>
 					<div class="flex-grow">
-						<span class="font-medium">{item.name || item.tag_name}</span>
+						<a
+							href={isRelease
+								? item.html_url
+								: `https://github.com/${repo.owner}/${repo.name}/releases/tag/${item.name}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="font-medium text-blue-600 hover:underline"
+						>
+							{item.name || item.tag_name}
+						</a>
+
 						{#if isRelease}
 							<span class="ml-2 text-gray-600"
 								>{new Date(item.published_at).toLocaleDateString()}</span
