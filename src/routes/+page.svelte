@@ -9,6 +9,7 @@
 		{ owner: 'duplicati', name: 'duplicati' },
 		{ owner: 'elastic', name: 'elasticsearch' },
 		{ owner: 'FredrikNoren', name: 'ungit' },
+		{ owner: 'huntabyte', name: 'shadcn-svelte' },
 		{ owner: 'Lissy93', name: 'dashy' },
 		{ owner: 'louislam', name: 'uptime-kuma' },
 		{ owner: 'makeplane', name: 'plane' },
