@@ -24,6 +24,7 @@
 		{ owner: 'sveltejs', name: 'kit' },
 		{ owner: 'sveltejs', name: 'svelte' },
 		{ owner: 'tailwindlabs', name: 'tailwindcss' },
+		{ owner: 'tinacms', name: 'tinacms' },
 		{ owner: 'TryGhost', name: 'Ghost' },
 		{ owner: 'twentyhq', name: 'twenty' },
 		{ owner: 'TYPO3', name: 'typo3' },
