@@ -1,5 +1,6 @@
 <script lang="ts">
-	let { repo, releases = []} = $props();
+	import { cn } from '$lib/utils';
+	let { repo, releases = [] } = $props();
 
 	function getUpdateDaysAgo(dateString) {
 		if (!dateString) return 'none';
@@ -79,22 +80,23 @@
 				</li>
 			{/each}
 		</ul>
-		
-		{:else}
+	{:else}
 		<p class="text-gray-600">No releases or tags found.</p>
 	{/if}
 </div>
 
 {#snippet daysAgo(daysAgo)}
-{@const days = 21}
-<div class="absolute left-0 bottom-0 w-full h-1 bg-red-200 grid grid-cols-21 divide-x divide-black/10">
+	{@const days = 20}
+	<div class="absolute bottom-0 left-0 grid h-1 w-full bg-gray-200 grid-cols-20 divide-x divide-black/10">
 		{#each Array(days) as _, i}
 			<div
-				class={i === 21 - daysAgo ? "bg-green-500" : "bg-gray-200"}
+				class={cn(
+					i < 7 || i >= 14 ? 'bg-gray-300' : '',
+					i === 20 - daysAgo ? 'bg-green-500' : ''
+				)}
 			></div>
 		{/each}
-		
-</div>
+	</div>
 {/snippet}
 
 <style>
