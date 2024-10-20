@@ -25,6 +25,7 @@
 		{ owner: 'sveltejs', name: 'svelte' },
 		{ owner: 'tailwindlabs', name: 'tailwindcss' },
 		{ owner: 'twentyhq', name: 'twenty' },
+		{ owner: 'umami-software', name: 'umami' },
 		{ owner: 'TYPO3', name: 'typo3' }
 	];
 	let releases = $state({});
