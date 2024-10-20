@@ -27,7 +27,7 @@
 		{ owner: 'twentyhq', name: 'twenty' },
 		{ owner: 'TYPO3', name: 'typo3' }
 	];
-	let releases = {};
+	let releases = $state({});
 
 	onMount(async () => {
 		for (let repo of repos) {

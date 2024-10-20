@@ -1,6 +1,5 @@
 <script lang="ts">
-	export let repo;
-	export let releases = [];
+	let { repo, releases = []} = $props();
 
 	function getUpdateDaysAgo(dateString) {
 		if (!dateString) return 'none';
@@ -23,7 +22,7 @@
 		return 'old';
 	}
 
-	$: isRelease = releases.length > 0 && 'published_at' in releases[0];
+	let isRelease = $derived(releases.length > 0 && 'published_at' in releases[0]);
 </script>
 
 <div class="rounded-lg bg-white p-6 shadow">
