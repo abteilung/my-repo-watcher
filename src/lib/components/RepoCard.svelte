@@ -1,6 +1,15 @@
-<script>
+<script lang="ts">
 	export let repo;
 	export let releases = [];
+
+	function getUpdateDaysAgo(dateString) {
+		if (!dateString) return 'none';
+		const releaseDate = new Date(dateString);
+		const now = new Date();
+		const diffInDays = (now - releaseDate) / (1000 * 60 * 60 * 24);
+
+		return parseInt(diffInDays);
+	}
 
 	function getUpdateStatus(dateString) {
 		if (!dateString) return 'none';
@@ -8,7 +17,7 @@
 		const now = new Date();
 		const diffInDays = (now - releaseDate) / (1000 * 60 * 60 * 24);
 
-		if (diffInDays <= 1) return 'very-recent';
+		if (diffInDays <= 3) return 'very-recent';
 		if (diffInDays <= 7) return 'recent';
 		if (diffInDays <= 14) return 'somewhat-recent';
 		return 'old';
@@ -34,7 +43,7 @@
 			{#each releases as item}
 				{@const updateStatus = getUpdateStatus(item.published_at)}
 				<li
-					class="flex items-center rounded bg-gray-100 p-2 {isRelease
+					class="relative flex items-center rounded bg-gray-100 p-2 {isRelease
 						? `update-${updateStatus}`
 						: ''}"
 				>
@@ -67,13 +76,27 @@
 							{/if}
 						</span>
 					{/if}
+					{@render daysAgo(getUpdateDaysAgo(item.published_at))}
 				</li>
 			{/each}
 		</ul>
-	{:else}
+		
+		{:else}
 		<p class="text-gray-600">No releases or tags found.</p>
 	{/if}
 </div>
+
+{#snippet daysAgo(daysAgo)}
+{@const days = 21}
+<div class="absolute left-0 bottom-0 w-full h-1 bg-red-200 grid grid-cols-21 divide-x divide-black/10">
+		{#each Array(days) as _, i}
+			<div
+				class={i === 21 - daysAgo ? "bg-green-500" : "bg-gray-200"}
+			></div>
+		{/each}
+		
+</div>
+{/snippet}
 
 <style>
 	.update-very-recent {

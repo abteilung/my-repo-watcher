@@ -9,6 +9,7 @@
 		{ owner: 'duplicati', name: 'duplicati' },
 		{ owner: 'elastic', name: 'elasticsearch' },
 		{ owner: 'FredrikNoren', name: 'ungit' },
+		{ owner: 'gitbutlerapp', name: 'gitbutler' },
 		{ owner: 'huntabyte', name: 'shadcn-svelte' },
 		{ owner: 'Lissy93', name: 'dashy' },
 		{ owner: 'louislam', name: 'uptime-kuma' },
@@ -17,17 +18,14 @@
 		{ owner: 'nicolargo', name: 'glances' },
 		{ owner: 'paul-gauthier', name: 'aider' },
 		{ owner: 'payloadcms', name: 'payload' },
-		{ owner: 'pi-hole', name: 'pi-hole' },
 		{ owner: 'pocketbase', name: 'pocketbase' },
 		{ owner: 'sanity-io', name: 'sanity' },
 		{ owner: 'strapi', name: 'strapi' },
 		{ owner: 'sveltejs', name: 'kit' },
 		{ owner: 'sveltejs', name: 'svelte' },
 		{ owner: 'tailwindlabs', name: 'tailwindcss' },
-		{ owner: 'TryGhost', name: 'Ghost' },
 		{ owner: 'twentyhq', name: 'twenty' },
-		{ owner: 'TYPO3', name: 'typo3' },
-		{ owner: 'WordPress', name: 'WordPress' }
+		{ owner: 'TYPO3', name: 'typo3' }
 	];
 	let releases = {};
 
