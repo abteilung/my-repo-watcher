@@ -6,6 +6,7 @@
 		{ owner: 'coollabsio', name: 'coolify' },
 		{ owner: 'dani-garcia', name: 'vaultwarden' },
 		{ owner: 'directus', name: 'directus' },
+		{ owner: 'docsifyjs', name: 'docsify' },
 		{ owner: 'duplicati', name: 'duplicati' },
 		{ owner: 'elastic', name: 'elasticsearch' },
 		{ owner: 'FredrikNoren', name: 'ungit' },
