@@ -9,6 +9,7 @@
 		{ owner: 'docsifyjs', name: 'docsify' },
 		{ owner: 'duplicati', name: 'duplicati' },
 		{ owner: 'elastic', name: 'elasticsearch' },
+		{ owner: 'formbricks', name: 'formbricks' },
 		{ owner: 'FredrikNoren', name: 'ungit' },
 		{ owner: 'gitbutlerapp', name: 'gitbutler' },
 		{ owner: 'huntabyte', name: 'shadcn-svelte' },
