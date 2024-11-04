@@ -1,53 +1,35 @@
 <script>
 	import { onMount } from 'svelte';
 	import RepoCard from '$lib/components/RepoCard.svelte';
+	import { repos } from '$lib/repos';
 
-	let repos = [
-		{ owner: 'coollabsio', name: 'coolify' },
-		{ owner: 'dani-garcia', name: 'vaultwarden' },
-		{ owner: 'directus', name: 'directus' },
-		{ owner: 'docsifyjs', name: 'docsify' },
-		{ owner: 'duplicati', name: 'duplicati' },
-		{ owner: 'elastic', name: 'elasticsearch' },
-		{ owner: 'formbricks', name: 'formbricks' },
-		{ owner: 'FredrikNoren', name: 'ungit' },
-		{ owner: 'gitbutlerapp', name: 'gitbutler' },
-		{ owner: 'huntabyte', name: 'shadcn-svelte' },
-		{ owner: 'Lissy93', name: 'dashy' },
-		{ owner: 'louislam', name: 'uptime-kuma' },
-		{ owner: 'makeplane', name: 'plane' },
-		{ owner: 'meilisearch', name: 'meilisearch' },
-		{ owner: 'nicolargo', name: 'glances' },
-		{ owner: 'paul-gauthier', name: 'aider' },
-		{ owner: 'payloadcms', name: 'payload' },
-		{ owner: 'pocketbase', name: 'pocketbase' },
-		{ owner: 'sanity-io', name: 'sanity' },
-		{ owner: 'strapi', name: 'strapi' },
-		{ owner: 'sveltejs', name: 'kit' },
-		{ owner: 'sveltejs', name: 'svelte' },
-		{ owner: 'tailwindlabs', name: 'tailwindcss' },
-		{ owner: 'twentyhq', name: 'twenty' },
-		{ owner: 'umami-software', name: 'umami' },
-		{ owner: 'TYPO3', name: 'typo3' }
-	];
 	let releases = $state({});
 
 	onMount(async () => {
-		for (let repo of repos) {
-			const response = await fetch(`/api/github?owner=${repo.owner}&repo=${repo.name}`);
-			releases[`${repo.owner}/${repo.name}`] = await response.json();
-		}
+		// Alle Requests parallel ausführen für bessere Performance
+		const promises = repos.map(async (repo) => {
+			try {
+				const response = await fetch(`/api/github/${repo.owner}/${repo.repo}`);
+				if (!response.ok) throw new Error('Failed to fetch');
+				const data = await response.json();
+				releases[`${repo.owner}/${repo.repo}`] = data;
+			} catch (error) {
+				console.error(`Error fetching ${repo.owner}/${repo.repo}:`, error);
+				releases[`${repo.owner}/${repo.repo}`] = []; // Leeres Array bei Fehler
+			}
+		});
+
+		// Warte auf alle Requests
+		await Promise.all(promises);
 	});
 </script>
 
-<div class=" mx-auto px-4">
+<div class="mx-auto px-4">
 	<h1 class="mb-8 text-3xl font-bold">GitHub Release Watcher</h1>
 
-	<div
-		class="grid grid-cols-1 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
-	>
+	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 		{#each repos as repo}
-			<RepoCard {repo} releases={releases[`${repo.owner}/${repo.name}`] || []} />
+			<RepoCard {repo} releases={releases[`${repo.owner}/${repo.repo}`] || []} />
 		{/each}
 	</div>
 </div>
