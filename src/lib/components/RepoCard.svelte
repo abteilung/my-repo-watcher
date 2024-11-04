@@ -26,17 +26,17 @@
 	let isRelease = $derived(releases.length > 0 && 'published_at' in releases[0]);
 </script>
 
-<div class="rounded-lg bg-white p-6 shadow">
-	<h2 class="mb-2 text-2xl font-semibold">{repo.owner}/{repo.name}</h2>
-	<a
-		href="https://github.com/{repo.owner}/{repo.name}"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="mb-4 inline-block text-blue-500 hover:underline"
-	>
-		View on GitHub
-	</a>
-
+<div class="rounded-lg bg-white p-3 shadow">
+	<h2 class="mb-0 text-2xl font-semibold">
+		<a
+			href="https://github.com/{repo.owner}/{repo.name}"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-block text-blue-500 hover:underline"
+		>
+			{repo.owner}/{repo.name}
+		</a>
+	</h2>
 	<h3 class="mb-2 mt-4 text-xl font-semibold">{isRelease ? 'Latest Releases' : 'Latest Tags'}</h3>
 	{#if releases.length > 0}
 		<ul class="space-y-2">
@@ -87,13 +87,12 @@
 
 {#snippet daysAgo(daysAgo)}
 	{@const days = 20}
-	<div class="absolute bottom-0 left-0 grid h-1 w-full bg-gray-200 grid-cols-20 divide-x divide-black/10">
+	<div
+		class="absolute bottom-0 left-0 grid h-1 w-full grid-cols-20 divide-x divide-black/10 bg-gray-200"
+	>
 		{#each Array(days) as _, i}
 			<div
-				class={cn(
-					i < 7 || i >= 14 ? 'bg-gray-300' : '',
-					i === 20 - daysAgo ? 'bg-green-500' : ''
-				)}
+				class={cn(i < 7 || i >= 14 ? 'bg-gray-300' : '', i === 20 - daysAgo ? 'bg-green-500' : '')}
 			></div>
 		{/each}
 	</div>
