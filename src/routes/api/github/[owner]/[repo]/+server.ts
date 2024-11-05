@@ -10,7 +10,7 @@ async function fetchGithubData(url: string) {
         headers: {
             Authorization: `token ${GITHUB_TOKEN}`,
             "Access-Control-Allow-Origin": "*",
-            "Cache-Control": `public, s-maxage=${60 * 60 * 24 * 365}`,
+            "Cache-Control": `public, s-maxage=${60 * 60 * 24}`,
         },
     });
     if (!response.ok) {
