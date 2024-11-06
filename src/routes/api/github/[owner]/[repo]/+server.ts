@@ -3,7 +3,7 @@ import { GITHUB_TOKEN } from "$env/static/private";
 import type { RequestHandler } from "./$types";
 import { repos } from "$lib/repos";
 
-export const prerender = true;
+export const prerender = false;
 
 async function fetchGithubData(url: string) {
     const response = await fetch(url, {

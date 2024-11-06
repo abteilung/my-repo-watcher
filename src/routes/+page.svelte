@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import RepoCard from '$lib/components/RepoCard.svelte';
+	import CacheInfo from '$lib/components/CacheInfo.svelte'; // Neue Import
 	import { repos } from '$lib/repos';
 
 	let releases = $state({});
@@ -32,4 +33,5 @@
 			<RepoCard {repo} releases={releases[`${repo.owner}/${repo.repo}`] || []} />
 		{/each}
 	</div>
+	<CacheInfo />
 </div>
