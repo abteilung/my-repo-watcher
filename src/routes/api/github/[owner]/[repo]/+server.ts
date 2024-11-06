@@ -76,6 +76,7 @@ export const GET: RequestHandler = async ({ params }) => {
             headers: {
                 "Content-Type": "application/json",
                 "Cache-Control": "public, max-age=3600",
+                "Last-Modified": new Date().toUTCString(),
             },
         },
     );
