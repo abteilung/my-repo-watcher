@@ -1,4 +1,3 @@
-// src/routes/api/build-info/+server.ts
 let BUILD_TIME = new Date().toISOString();
 
 export function GET() {
