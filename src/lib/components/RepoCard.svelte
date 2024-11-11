@@ -29,12 +29,12 @@
 <div class="rounded-lg bg-white p-3 shadow">
 	<h2 class="mb-0 text-2xl font-semibold">
 		<a
-			href="https://github.com/{repo.owner}/{repo.name}"
+			href="https://github.com/{repo.owner}/{repo.repo}"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-block text-blue-500 hover:underline"
 		>
-			{repo.owner}/{repo.name}
+			{repo.owner}/{repo.repo}
 		</a>
 	</h2>
 	<h3 class="mb-2 mt-4 text-xl font-semibold">{isRelease ? 'Latest Releases' : 'Latest Tags'}</h3>
