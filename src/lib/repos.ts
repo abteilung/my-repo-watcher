@@ -14,6 +14,7 @@ export const repos: GithubRepo[] = [
     { owner: "formbricks", repo: "formbricks" },
     { owner: "FredrikNoren", repo: "ungit" },
     { owner: "huntabyte", repo: "shadcn-svelte" },
+    { owner: "CorentinTh", repo: "it-tools" },
     { owner: "Lissy93", repo: "dashy" },
     { owner: "louislam", repo: "uptime-kuma" },
     { owner: "makeplane", repo: "plane" },
