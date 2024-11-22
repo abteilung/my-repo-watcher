@@ -13,7 +13,6 @@ export const repos: GithubRepo[] = [
     { owner: "elastic", repo: "elasticsearch" },
     { owner: "formbricks", repo: "formbricks" },
     { owner: "FredrikNoren", repo: "ungit" },
-    { owner: "gitbutlerapp", repo: "gitbutler" },
     { owner: "huntabyte", repo: "shadcn-svelte" },
     { owner: "Lissy93", repo: "dashy" },
     { owner: "louislam", repo: "uptime-kuma" },
