@@ -8,6 +8,7 @@ export const repos: GithubRepo[] = [
     { owner: "coollabsio", repo: "coolify" },
     { owner: "dani-garcia", repo: "vaultwarden" },
     { owner: "directus", repo: "directus" },
+    { owner: "docker-mailserver", repo: "docker-mailserver" },
     { owner: "docsifyjs", repo: "docsify" },
     { owner: "duplicati", repo: "duplicati" },
     { owner: "elastic", repo: "elasticsearch" },
