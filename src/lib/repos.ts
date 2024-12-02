@@ -7,6 +7,7 @@ export interface GithubRepo {
 export const repos: GithubRepo[] = [
     { owner: "chatwoot", repo: "chatwoot" },
     { owner: "coollabsio", repo: "coolify" },
+    { owner: "CorentinTh", repo: "it-tools" },
     { owner: "dani-garcia", repo: "vaultwarden" },
     { owner: "directus", repo: "directus" },
     { owner: "docker-mailserver", repo: "docker-mailserver" },
@@ -16,7 +17,7 @@ export const repos: GithubRepo[] = [
     { owner: "formbricks", repo: "formbricks" },
     { owner: "FredrikNoren", repo: "ungit" },
     { owner: "huntabyte", repo: "shadcn-svelte" },
-    { owner: "CorentinTh", repo: "it-tools" },
+    { owner: "kimai", repo: "kimai" },
     { owner: "Lissy93", repo: "dashy" },
     { owner: "louislam", repo: "uptime-kuma" },
     { owner: "makeplane", repo: "plane" },
