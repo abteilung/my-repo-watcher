@@ -35,4 +35,5 @@ export const repos: GithubRepo[] = [
     { owner: "twentyhq", repo: "twenty" },
     { owner: "umami-software", repo: "umami" },
     { owner: "TYPO3", repo: "typo3" },
+    { owner: "zammad", repo: "zammad" },
 ] as const;
