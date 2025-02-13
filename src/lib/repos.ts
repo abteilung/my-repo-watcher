@@ -29,6 +29,7 @@ export const repos: GithubRepo[] = [
     { owner: "paul-gauthier", repo: "aider" },
     { owner: "payloadcms", repo: "payload" },
     { owner: "pocketbase", repo: "pocketbase" },
+    { owner: "renovatebot", repo: "renovate" },
     { owner: "sanity-io", repo: "sanity" },
     { owner: "solidtime-io", repo: "solidtime" },
     { owner: "strapi", repo: "strapi" },
