@@ -26,7 +26,7 @@
 </script>
 
 <div class="mx-auto px-4">
-	<h1 class="mb-8 text-3xl font-bold">GitHub Release Watcher</h1>
+	<h1 class="my-8 text-3xl font-bold">GitHub Release Watcher</h1>
 
 	<div
 		class="grid grid-cols-1 gap-6 pb-48 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"

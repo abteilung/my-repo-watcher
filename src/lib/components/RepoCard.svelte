@@ -26,13 +26,13 @@
 	let isRelease = $derived(releases.length > 0 && 'published_at' in releases[0]);
 </script>
 
-<div class="rounded-lg bg-white p-3 shadow">
+<div class="rounded-lg bg-white p-3 drop-shadow-lg dark:bg-gray-900 dark:text-white">
 	<h2 class="mb-0 text-2xl font-semibold">
 		<a
 			href="https://github.com/{repo.owner}/{repo.repo}"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="inline-block text-blue-500 hover:underline"
+			class="inline-block text-blue-500 hover:underline dark:text-blue-300"
 		>
 			{repo.owner}/{repo.repo}
 		</a>
@@ -43,9 +43,10 @@
 			{#each releases as item}
 				{@const updateStatus = getUpdateStatus(item.published_at)}
 				<li
-					class="relative flex items-center rounded bg-gray-100 p-2 {isRelease
-						? `update-${updateStatus}`
-						: ''}"
+					class="relative flex items-center rounded border-r-4 bg-gray-100 p-2 dark:bg-gray-900
+				{updateStatus === 'very-recent' ? 'border-green-500 bg-green-100 dark:bg-green-800 ' : ''}
+				{updateStatus === 'somewhat-recent' ? 'border-orange-300 dark:border-orange-500' : ''}
+				{updateStatus === 'old' ? 'border-gray-300 dark:border-gray-700' : ''}"
 				>
 					<div class="flex-grow">
 						<a
@@ -54,13 +55,13 @@
 								: `https://github.com/${repo.owner}/${repo.name}/releases/tag/${item.name}`}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="font-medium text-blue-600 hover:underline"
+							class="cursor-pointer font-medium text-blue-600 hover:underline dark:text-white"
 						>
 							{item.name || item.tag_name}
 						</a>
 
 						{#if isRelease}
-							<span class="ml-2 text-gray-600"
+							<span class="ml-2 cursor-pointer text-gray-600 dark:text-gray-400"
 								>{new Date(item.published_at).toLocaleDateString()}</span
 							>
 						{/if}
@@ -102,13 +103,21 @@
 	.update-very-recent {
 		@apply border-r-4 border-green-500 bg-green-100;
 	}
-	.update-recent {
-		@apply border-r-4 border-green-300;
+	.dark .update-very-recent {
+		@apply bg-green-500;
 	}
+
 	.update-somewhat-recent {
 		@apply border-r-4 border-orange-300;
 	}
+	.dark .update-somewhat-recent {
+		@apply border-orange-500;
+	}
+
 	.update-old {
 		@apply border-r-4 border-gray-300;
+	}
+	.dark .update-old {
+		@apply border-gray-700;
 	}
 </style>
