@@ -5,6 +5,7 @@ export interface GithubRepo {
 }
 
 export const repos: GithubRepo[] = [
+	{ owner: 'amerkurev', repo: 'doku' },
 	{ owner: 'chatwoot', repo: 'chatwoot' },
 	{ owner: 'coollabsio', repo: 'coolify' },
 	{ owner: 'CorentinTh', repo: 'it-tools' },
