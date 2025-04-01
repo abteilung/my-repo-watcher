@@ -27,6 +27,7 @@ export const repos: GithubRepo[] = [
 	{ owner: 'meilisearch', repo: 'meilisearch' },
 	{ owner: 'n8n-io', repo: 'n8n' },
 	{ owner: 'nicolargo', repo: 'glances' },
+	{ owner: 'outline', repo: 'outline' },
 	{ owner: 'paul-gauthier', repo: 'aider' },
 	{ owner: 'payloadcms', repo: 'payload' },
 	{ owner: 'pocketbase', repo: 'pocketbase' },
