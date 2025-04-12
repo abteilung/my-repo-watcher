@@ -36,6 +36,7 @@ export const repos: GithubRepo[] = [
 	{ owner: 'renovatebot', repo: 'renovate' },
 	{ owner: 'sanity-io', repo: 'sanity' },
 	{ owner: 'solidtime-io', repo: 'solidtime' },
+	{ owner: 'storybookjs', repo: 'storybook' },
 	{ owner: 'strapi', repo: 'strapi' },
 	{ owner: 'sveltejs', repo: 'kit' },
 	{ owner: 'sveltejs', repo: 'svelte' },
