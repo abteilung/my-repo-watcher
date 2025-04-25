@@ -17,7 +17,6 @@ export const repos: GithubRepo[] = [
 	{ owner: 'duplicati', repo: 'duplicati' },
 	{ owner: 'elastic', repo: 'elasticsearch' },
 	{ owner: 'formbricks', repo: 'formbricks' },
-	{ owner: 'FredrikNoren', repo: 'ungit' },
 	{ owner: 'gethomepage', repo: 'homepage' },
 	{ owner: 'hcengineering', repo: 'platform' },
 	{ owner: 'huntabyte', repo: 'shadcn-svelte' },
