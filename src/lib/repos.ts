@@ -42,6 +42,7 @@ export const repos: GithubRepo[] = [
 	{ owner: 'sveltejs', repo: 'svelte' },
 	{ owner: 'tailwindlabs', repo: 'tailwindcss' },
 	{ owner: 'thedaviddias', repo: 'Front-End-Checklist' },
+	{ owner: 'toolbeam', repo: 'openauth' },
 	{ owner: 'twentyhq', repo: 'twenty' },
 	{ owner: 'umami-software', repo: 'umami' },
 	{ owner: 'unsend-dev', repo: 'unsend' },
