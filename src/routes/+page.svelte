@@ -5,6 +5,7 @@
 	import { repos } from '$lib/repos';
 
 	let releases = $state({});
+	let isLoading = $state(true);
 
 	onMount(async () => {
 		// Alle Requests parallel ausführen für bessere Performance
@@ -17,6 +18,8 @@
 			} catch (error) {
 				console.error(`Error fetching ${repo.owner}/${repo.repo}:`, error);
 				releases[`${repo.owner}/${repo.repo}`] = []; // Leeres Array bei Fehler
+			} finally {
+				isLoading = false;
 			}
 		});
 
@@ -25,15 +28,22 @@
 	});
 </script>
 
-<div class="mx-auto px-4">
-	<h1 class="my-8 text-3xl font-bold">GitHub Release Watcher</h1>
-
-	<div
-		class="grid grid-cols-1 gap-6 pb-48 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
-	>
-		{#each repos as repo}
-			<RepoCard {repo} releases={releases[`${repo.owner}/${repo.repo}`] || []} />
-		{/each}
+{#if isLoading}
+	<div class="flex justify-center py-12">
+		<div
+			class="h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"
+		></div>
 	</div>
-	<CacheInfo />
-</div>
+{:else}
+	<div class="mx-auto px-4">
+		<h1 class="my-8 text-3xl font-bold">GitHub Release Watcher</h1>
+
+		<div <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			>
+			{#each repos as repo}
+				<RepoCard {repo} releases={releases[`${repo.owner}/${repo.repo}`] || []} />
+			{/each}
+		</div>
+		<CacheInfo />
+	</div>
+{/if}

@@ -1,21 +1,31 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
-	let { repo, releases = [] } = $props();
+	import type { GithubRepo } from '$lib/repos';
 
-	function getUpdateDaysAgo(dateString) {
-		if (!dateString) return 'none';
-		const releaseDate = new Date(dateString);
-		const now = new Date();
-		const diffInDays = (now - releaseDate) / (1000 * 60 * 60 * 24);
-
-		return parseInt(diffInDays);
+	interface Release {
+		name: string;
+		published_at: string;
+		html_url: string;
 	}
 
-	function getUpdateStatus(dateString) {
+	let { repo, releases = [] as Release[] } = $props();
+
+	function getUpdateDaysAgo(dateString: string | null): number {
+		if (!dateString) return Number.MAX_SAFE_INTEGER;
+
+		try {
+			const releaseDate = new Date(dateString);
+			const now = new Date();
+			return Math.floor((now.getTime() - releaseDate.getTime()) / (1000 * 60 * 60 * 24));
+		} catch {
+			return Number.MAX_SAFE_INTEGER;
+		}
+	}
+
+	function getUpdateStatus(dateString: string | null): string {
 		if (!dateString) return 'none';
 		const releaseDate = new Date(dateString);
 		const now = new Date();
-		const diffInDays = (now - releaseDate) / (1000 * 60 * 60 * 24);
+		const diffInDays = (now.getTime() - releaseDate.getTime()) / (1000 * 60 * 60 * 24);
 
 		if (diffInDays <= 3) return 'very-recent';
 		if (diffInDays <= 7) return 'recent';
@@ -88,13 +98,13 @@
 
 {#snippet daysAgo(daysAgo)}
 	{@const days = 20}
+	{@const position = daysAgo <= 19 ? 19 - daysAgo : -1}
+
 	<div
 		class="absolute bottom-0 left-0 grid h-1 w-full grid-cols-20 divide-x divide-black/10 bg-gray-200"
 	>
 		{#each Array(days) as _, i}
-			<div
-				class={cn(i < 7 || i >= 14 ? 'bg-gray-300' : '', i === 20 - daysAgo ? 'bg-green-500' : '')}
-			></div>
+			<div class={i === position ? 'bg-green-500' : 'bg-gray-300'}></div>
 		{/each}
 	</div>
 {/snippet}
