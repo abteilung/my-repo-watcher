@@ -62,7 +62,7 @@
 						<a
 							href={isRelease
 								? item.html_url
-								: `https://github.com/${repo.owner}/${repo.name}/releases/tag/${item.name}`}
+								: `https://github.com/${repo.owner}/${repo.repo}/releases/tag/${item.name}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="cursor-pointer font-medium text-blue-600 hover:underline dark:text-white"
