@@ -97,14 +97,18 @@
 </div>
 
 {#snippet daysAgo(daysAgo)}
-	{@const days = 20}
-	{@const position = daysAgo <= 19 ? 19 - daysAgo : -1}
+	{@const days = daysAgo > 20 ? 20 : daysAgo}
+	<!-- Dynamische Anzahl -->
+	{@const markerPosition = 20 - daysAgo}
 
 	<div
 		class="absolute bottom-0 left-0 grid h-1 w-full grid-cols-20 divide-x divide-black/10 bg-gray-200"
 	>
-		{#each Array(days) as _, i}
-			<div class={i === position ? 'bg-green-500' : 'bg-gray-300'}></div>
+		{#each Array(20) as _, i}
+			<div
+				class={(i < 7 ? 'bg-gray-300' : i < 14 ? 'bg-gray-400' : 'bg-gray-500',
+				i === markerPosition ? '!bg-green-500' : '')}
+			></div>
 		{/each}
 	</div>
 {/snippet}

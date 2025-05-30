@@ -38,8 +38,7 @@
 	<div class="mx-auto px-4">
 		<h1 class="my-8 text-3xl font-bold">GitHub Release Watcher</h1>
 
-		<div <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-			>
+		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 			{#each repos as repo}
 				<RepoCard {repo} releases={releases[`${repo.owner}/${repo.repo}`] || []} />
 			{/each}
