@@ -97,18 +97,26 @@
 </div>
 
 {#snippet daysAgo(daysAgo)}
-	{@const days = daysAgo > 20 ? 20 : daysAgo}
-	<!-- Dynamische Anzahl -->
-	{@const markerPosition = 20 - daysAgo}
+	{@const maxDays = 20}
+	{@const days = daysAgo > maxDays ? maxDays : daysAgo}
+	{@const markerPosition = 19 - days}
+	<!-- 0-basierter Index von links -->
 
 	<div
-		class="absolute bottom-0 left-0 grid h-1 w-full grid-cols-20 divide-x divide-black/10 bg-gray-200"
+		class="absolute bottom-0 left-0 grid h-1 w-full divide-x divide-black/10 bg-gray-200"
+		style="grid-template-columns: repeat({maxDays}, minmax(0, 1fr))"
 	>
-		{#each Array(20) as _, i}
+		{#each Array(maxDays) as _, i}
 			<div
-				class={(i < 7 ? 'bg-gray-300' : i < 14 ? 'bg-gray-400' : 'bg-gray-500',
-				i === markerPosition ? '!bg-green-500' : '')}
-			></div>
+				class={[
+					i >= 13
+						? 'bg-gray-300' // Letzte 7 Tage (sehr aktuell)
+						: i >= 6
+							? 'bg-gray-200' // Mittlere 7 Tage (etwas aktuell)
+							: 'bg-gray-300', // Erste 6 Tage (veraltet)
+					i === markerPosition ? '!bg-green-500' : '' // Release-Position
+				]}
+			/>
 		{/each}
 	</div>
 {/snippet}
