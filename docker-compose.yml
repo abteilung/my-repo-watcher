@@ -28,30 +28,6 @@ services:
     ports:
       - "6379:6379"  # Für lokalen Zugriff
 
-  # Migration service - läuft einmalig
-  migrate:
-    image: node:20-alpine
-    container_name: migrate
-    working_dir: /app
-    volumes:
-      - .:/app
-      - /app/node_modules  # Anonymous volume für node_modules
-    environment:
-      - POCKETBASE_URL=http://pocketbase:8090
-      - POCKETBASE_ADMIN_EMAIL=${POCKETBASE_ADMIN_EMAIL:-admin@example.com}
-      - POCKETBASE_ADMIN_PASSWORD=${POCKETBASE_ADMIN_PASSWORD:-supersecure123}
-    depends_on:
-      pocketbase:
-        condition: service_healthy
-    command: >
-      sh -c "
-        npm install &&
-        sleep 10 &&
-        npm run migrate
-      "
-    profiles:
-      - tools
-
 volumes:
   pocketbase_data:
   redis_data:
