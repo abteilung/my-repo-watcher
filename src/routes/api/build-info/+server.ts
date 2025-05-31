@@ -1,11 +1,17 @@
-let BUILD_TIME = new Date().toISOString();
+export const prerender = true;
 
-export function GET() {
-    return new Response(JSON.stringify({ buildTime: BUILD_TIME }), {
-        headers: {
-            "content-type": "application/json",
-            // Lange Cache-Zeit, da sich die Build-Zeit nicht ändert
-            "cache-control": "public, max-age=31536000",
-        },
-    });
+export async function GET() {
+	return new Response(
+		JSON.stringify({
+			buildTime: new Date().toISOString(),
+			version: '1.0.0',
+			environment: 'production'
+		}),
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				'Cache-Control': 'public, max-age=86400'
+			}
+		}
+	);
 }

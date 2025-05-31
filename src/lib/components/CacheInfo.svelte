@@ -6,23 +6,34 @@
 	let maxAge = $state<number | null>(null);
 	let currentTime = $state(new Date());
 	let error = $state<string | null>(null);
+	let testRepo = $state<string | null>(null);
 
 	// Fetch build time and cache info on mount
 	onMount(async () => {
 		try {
-			// Fetch first repo to get cache headers
-			const repoResponse = await fetch('/api/github/sveltejs/svelte');
-			if (!repoResponse.ok) throw new Error('Failed to fetch repo data');
+			// First, get a repo from PocketBase to test with
+			const reposResponse = await fetch('/api/repos?limit=1');
+			if (!reposResponse.ok) throw new Error('Failed to fetch repos');
 
-			// Get cache information from headers
-			const cacheControl = repoResponse.headers.get('cache-control');
-			if (cacheControl) {
-				const maxAgeMatch = cacheControl.match(/max-age=(\d+)/);
-				if (maxAgeMatch) {
-					maxAge = parseInt(maxAgeMatch[1]);
+			const reposData = await reposResponse.json();
+			if (reposData.repos && reposData.repos.length > 0) {
+				const firstRepo = reposData.repos[0];
+				testRepo = `${firstRepo.owner}/${firstRepo.repo}`;
+
+				// Now fetch that repo's GitHub data
+				const repoResponse = await fetch(`/api/github/${firstRepo.owner}/${firstRepo.repo}`);
+				if (!repoResponse.ok) throw new Error('Failed to fetch repo data');
+
+				// Get cache information from headers
+				const cacheControl = repoResponse.headers.get('cache-control');
+				if (cacheControl) {
+					const maxAgeMatch = cacheControl.match(/max-age=(\d+)/);
+					if (maxAgeMatch) {
+						maxAge = parseInt(maxAgeMatch[1]);
+					}
 				}
+				lastModified = repoResponse.headers.get('last-modified');
 			}
-			lastModified = repoResponse.headers.get('last-modified');
 
 			// Get build time
 			const buildResponse = await fetch('/api/build-info');
@@ -89,6 +100,9 @@
 		{:else}
 			<div class="font-mono text-gray-600">Age: {getBuildAge()}</div>
 			<div class="font-mono text-gray-600">Next refresh: {getNextRefresh()}</div>
+			{#if testRepo}
+				<div class="text-xs text-gray-500">Test repo: {testRepo}</div>
+			{/if}
 			<div class="mt-1 h-1 w-full overflow-hidden rounded-full bg-gray-200">
 				<div
 					class="h-full bg-blue-500 transition-all duration-1000"
