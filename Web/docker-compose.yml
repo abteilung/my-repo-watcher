@@ -1,0 +1,57 @@
+# docker-compose.local.yml - Für lokales Testing
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - pocketbase_data:/pb_data
+    environment:
+      - PB_ADMIN_EMAIL=${POCKETBASE_ADMIN_EMAIL:-admin@example.com}
+      - PB_ADMIN_PASSWORD=${POCKETBASE_ADMIN_PASSWORD:-supersecure123}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8090/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - "6379:6379"  # Für lokalen Zugriff
+
+  # Migration service - läuft einmalig
+  migrate:
+    image: node:20-alpine
+    container_name: migrate
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules  # Anonymous volume für node_modules
+    environment:
+      - POCKETBASE_URL=http://pocketbase:8090
+      - POCKETBASE_ADMIN_EMAIL=${POCKETBASE_ADMIN_EMAIL:-admin@example.com}
+      - POCKETBASE_ADMIN_PASSWORD=${POCKETBASE_ADMIN_PASSWORD:-supersecure123}
+    depends_on:
+      pocketbase:
+        condition: service_healthy
+    command: >
+      sh -c "
+        npm install &&
+        sleep 10 &&
+        npm run migrate
+      "
+    profiles:
+      - tools
+
+volumes:
+  pocketbase_data:
+  redis_data:
